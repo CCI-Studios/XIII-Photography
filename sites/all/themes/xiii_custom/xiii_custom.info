@@ -1,0 +1,19 @@
+name = XIII Photography custom theme
+description = 
+version = 1.0
+core = 7.x
+engine = phptemplate
+
+scripts[] = js/background.js
+scripts[] = js/arrows.js
+scripts[] = js/preload.js
+
+stylesheets[all][] = stylesheets/screen.css
+
+regions[header] = Header
+regions[nav_menu] = Main navigation menu
+regions[help] = Help
+
+regions[content] = Content
+
+regions[footer] = Footer

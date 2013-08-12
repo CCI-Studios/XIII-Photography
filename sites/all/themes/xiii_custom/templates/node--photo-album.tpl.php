@@ -1,0 +1,1 @@
+<?php print views_embed_view('photo_album_node', 'page', $node->nid); ?>

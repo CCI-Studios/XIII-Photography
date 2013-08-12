@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the XIII Photo Albums feature.
+ */
+
+include_once 'xiii_photo_albums.features.inc';
