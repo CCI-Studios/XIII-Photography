@@ -14,6 +14,39 @@ var album, photos, arrow_left, arrow_right, x_max, x_min, x, x_move, x_per_page;
 		x_max = photos.size()-1;
 		x_min = 0;
 
+
+		album.on("touchstart", function(e){
+			album.data({
+				"touchstartX": e.originalEvent.touches[0].pageX, 
+				"left_touchstart":parseInt(album.css("left"))||0
+			});
+		});
+		album.on("touchmove", function(e){
+			e.preventDefault();
+			var deltaX = e.originalEvent.touches[0].pageX - album.data("touchstartX");
+			var left = album.data("left_touchstart");
+			left += deltaX;
+			var max_left = 0;
+			var min_left = -1*(x_max-x_per_page+1)*x_move;
+			if (left > max_left) {
+				left = max_left;
+				arrow_left.hide();
+			}
+			else
+			{
+				arrow_left.show();
+			}
+			if (left < min_left) {
+				left = min_left;
+				arrow_right.hide();
+			}
+			else
+			{
+				arrow_right.show();
+			}
+			album.css({"left": left+"px"});
+		});
+
 		var windowWidth = $(window).width();
 		x_per_page = 4;
 		if (windowWidth < 1060)
@@ -22,7 +55,6 @@ var album, photos, arrow_left, arrow_right, x_max, x_min, x, x_move, x_per_page;
 			x_per_page = 2;
 		if (windowWidth < 560)
 			x_per_page = 1;
-		console.log("photos per page: "+x_per_page);
 
 		if (photos.size() <= x_per_page)
 		{
@@ -55,7 +87,7 @@ var album, photos, arrow_left, arrow_right, x_max, x_min, x, x_move, x_per_page;
 				x_per_page = 2;
 			if (windowWidth < 560)
 				x_per_page = 1;
-			}
+		}
 	});
 
 }(jQuery));

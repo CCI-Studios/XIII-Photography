@@ -6,7 +6,6 @@ engine = phptemplate
 
 scripts[] = js/background.js
 scripts[] = js/arrows.js
-scripts[] = js/preload.js
 
 stylesheets[all][] = stylesheets/screen.css
 

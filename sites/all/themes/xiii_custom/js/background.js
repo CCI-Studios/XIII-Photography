@@ -73,7 +73,6 @@ function setBackground(index)
 	if (jQuery(window).width() > 1200)
 	{
 		url = jQuery(".views-field-field-image-2 [data-url]").eq(index).attr("data-url");
-		console.log(jQuery(".views-field-field-image-2 [data-url]").eq(index));
 	}
 	else
 	{
@@ -85,7 +84,10 @@ function setBackground(index)
 		jQuery("#background img").addClass("old");
 		jQuery("#background").append("<img class='new' />");
 
-		jQuery("#background img.new").one("load", resizeBackground).attr("src", url);
+		jQuery("#background img.new")
+			.one("load", resizeBackground)
+			.one("load", preloadNext)
+			.attr("src", url);
 	}
 }
 
@@ -105,7 +107,6 @@ function resizeBackground()
 
 	if (!img.height())
 	{
-		console.log("resizing too early. waiting 10ms...");
 		setTimeout(resizeBackground, 10);
 		return;
 	}
@@ -115,7 +116,6 @@ function resizeBackground()
 
 	if (!temp_img.height())
 	{
-		console.log("resizing too early. waiting 10ms...");
 		setTimeout(resizeBackground, 10);
 		return;
 	}
@@ -124,7 +124,6 @@ function resizeBackground()
 
 	if (temp_img.height() <= jQuery(window).height())
 	{
-		console.log("img.width="+img.width());
 		img
 			.addClass("landscape")
 			.css({
@@ -157,6 +156,24 @@ function resizeBackground()
 	});
 }
 
+function preloadNext()
+{
+	var next = i+1;
+	if (next > i_max) next=0;
+
+	if (jQuery(window).width() > 1200)
+	{
+		url = jQuery(".views-field-field-image-2 [data-url]").eq(next).attr("data-url");
+	}
+	else
+	{
+		url = jQuery(".views-field-field-image-1 [data-url]").eq(next).attr("data-url");
+	}
+
+	var img = new Image();
+	img.src = url;
+}
+
 function keypress(event)
 {
 	switch (event.keyCode)
@@ -173,17 +190,15 @@ function keypress(event)
 
 		case 13:
 			var active_link = jQuery(".view-collections .active a");
-			console.log(active_link);
-			if (active_link)
+			if (active_link.length == 1)
+			{
 				window.location = active_link.attr("href");
+			}
 			break;
 
 		case 8:
 			window.history.back();
 			break;
-
-		default:
-			console.log("keyCode: "+event.keyCode);
 	}
 }
 
