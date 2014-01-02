@@ -120,7 +120,7 @@ function resizeBackground()
 		return;
 	}
 
-	console.log("temp_img.height="+temp_img.height()+", window.height="+jQuery(window).height());
+	//console.log("temp_img.height="+temp_img.height()+", window.height="+jQuery(window).height());
 
 	if (temp_img.height() <= jQuery(window).height())
 	{

@@ -150,9 +150,11 @@ ul.menu li ,
 				position:absolute;
 				bottom:100%;
 				margin-bottom:1px;
+				border:1px solid gray;
 				border:1px solid rgba(0, 0, 0, 0.3);
 				border-bottom:0;
 				border-radius:3px 3px 0 0;
+				background:white;
 				background:rgba(255, 255, 255, 0.7);
 
 				li 
@@ -272,6 +274,7 @@ ul.menu li ,
 			left:0;
 			right:0;
 			padding-left:12px;
+			background:white;
 			background:rgba(255, 255, 255, 0.7);
 			line-height:38px;
 			color:$bluegrey;
@@ -282,6 +285,7 @@ ul.menu li ,
 
 	.views-row.active
 	{
+		border:white;
 		border:2px solid rgba(255, 255, 255, 0.8);
 		margin:-2px 9.5px;
 	}
@@ -336,6 +340,7 @@ ul.menu li ,
 
 		li.active
 		{
+			border:2px solid white;
 			border:2px solid rgba(255, 255, 255, 0.8);
 			margin:-2px 9.5px;
 		}
